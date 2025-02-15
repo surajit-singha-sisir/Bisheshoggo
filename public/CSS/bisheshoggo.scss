@@ -1,0 +1,411 @@
+@use "sass:color";
+
+$w-bg: #ffffff;
+$w-footer-bg: #3d444d;
+
+// FUNDAMENTAL COLORS
+$primary-color: #f08559;
+$secondary-color: #bfdfe0;
+
+//   TEXT
+$w-text: #19182a;
+$w-subtext: #343434;
+$w-text2: #135d9c;
+
+$icon: #f9c0c0;
+$w-lead: #bfdfe0;
+$w-div: #ececec;
+$w-border: #a5a5a5;
+
+$w-join-doctor: #d9d9d9;
+
+// SEARCH
+$w-search-div: #bfdfe0;
+
+// Z INDEX
+$z-down: -1;
+$z-ground: 0;
+$z-min: 1;
+$z-top: 2;
+$z-toper: 3;
+$z-topest: 4;
+$z-max: 5;
+
+// --------- DARK MODE -------------
+$d-bg: #19182a;
+$d-footer-bg: #0d0c1e;
+
+//   TEXT
+$d-text: #fff;
+$d-subtext: #e7e7e7;
+$d-text2: #68a9e0;
+
+$d-div: #ececec;
+$d-border: #a5a5a5;
+$w-lead: #19182a;
+
+// SEARCH
+$d-search-div: #1c1b2d;
+
+// SHADOWS
+$nav-shadow: 2px 3px 4px 0 hsla(0, 0%, 0%, 0.25);
+$search-shadow: 2px -2px 10px -4px hsla(0, 0%, 0%, 0.25);
+$icon-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.25);
+
+//   BLUR
+$blur: 20px;
+
+//   GAPS
+$gap-section: 50px;
+$gap-content: 20px;
+
+// FONT SIZE
+$font-min: 0.8rem;
+$font-max: 1.2rem;
+$font-size: 1rem;
+
+// CONTAINER
+$full-width: 90%;
+
+// FONT FAMILY
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  font-family: "Poppins", "Baloo Da 2", sans-serif;
+  @extend .transitions;
+}
+body.dark-mode {
+  background-color: $d-bg;
+  @extend .transitions;
+}
+// ------------ UNIVERSAL CLASSES STARTS
+a {
+  text-decoration: none;
+  color: $w-text;
+  @extend .transitions;
+}
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: $primary-color;
+  color: $primary-color;
+  @extend .transitions;
+}
+.a-no-hover:hover {
+  text-decoration: none;
+  @extend .transitions;
+}
+// DARK MODE ANCHOR
+body.dark-mode a {
+  color: $d-text;
+  @extend .transitions;
+}
+body.dark-mode a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: $primary-color;
+  color: $primary-color;
+}
+.full-width {
+  width: $full-width;
+  margin: 0 auto;
+}
+
+.abs-centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.transitions {
+  transition: all 0.3s ease;
+}
+.border-bottom {
+  border-bottom: 1px solid color.adjust($w-border, $lightness: 20%);
+}
+.bg-Whitei {
+  background-color: $w-bg !important;
+  @extend .transitions;
+}
+
+.bg-dark {
+  position: fixed;
+  top: 0;
+  left: -150%;
+  width: 100vw;
+  height: 100vh;
+  z-index: $z-topest;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  @extend .transitions;
+}
+.navToggleAnimStart {
+  left: 0 !important;
+  @extend .transitions;
+}
+
+// ----------- UNIVERSAL CLASSES END
+
+// ---------------- MAIN DESIGN STARTS
+
+// TOGGLE DARK
+.join-as-a-doctor {
+  position: relative;
+  padding: 0.5rem;
+  background-color: color.adjust($w-border, $lightness: 20%);
+  transition: all 0.3s ease;
+  z-index: $z-max;
+
+  .dark-toggle-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dark-toggle-div {
+      width: 3.5rem;
+      height: 1.7rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      padding-left: 1px;
+      background-color: $w-bg;
+      box-shadow: inset $icon-shadow;
+      border: 2px solid #fff;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+
+      .toggle-icon {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .toggled {
+        position: relative;
+        color: color.adjust($primary-color, $whiteness: 30%);
+        z-index: $z-top;
+        transition: all 0.3s ease;
+
+        & .toggle-active {
+          @extend .abs-centered;
+          content: "";
+          width: 1.4rem;
+          aspect-ratio: 1;
+          background-color: $w-text;
+          z-index: $z-down;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+}
+// DARK MODE
+body.dark-mode .join-as-a-doctor {
+  background-color: color.adjust($d-bg, $lightness: -5%);
+}
+
+// NAV BAR
+header.header {
+  position: sticky;
+  top: 0;
+  padding: 0.5rem;
+  width: 100%;
+  box-shadow: $nav-shadow;
+  background-color: color.adjust($w-border, $lightness: 30%);
+  z-index: $z-max;
+
+  nav.nav {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    z-index: inherit;
+
+    // HAMBURGER ANIMATION
+    .hamburger {
+      position: relative !important;
+      display: none;
+      cursor: pointer;
+      top: auto;
+      right: auto;
+      @extend .transitions;
+      z-index: inherit;
+
+      .inner-hamburger {
+        position: relative;
+        display: block;
+        width: 2rem;
+        // background-color: #135d9c;
+        aspect-ratio: 1;
+        z-index: inherit;
+
+        .line-rounded {
+          position: absolute;
+          width: 1.4em;
+          height: 3px;
+          border-radius: 2px;
+          background-color: $w-text;
+          @extend .transitions;
+        }
+        .first-line {
+          left: -3px;
+          transform: rotate(-45deg);
+          bottom: 22px;
+        }
+        .second-line {
+          left: 8px;
+          width: 15px;
+          bottom: 15px;
+          transform: rotate(-45deg);
+        }
+        .third-line {
+          left: 12px;
+          bottom: 8px;
+          transform: rotate(-45deg);
+        }
+
+        // AFTER CLICKED
+
+        .first-lined {
+          left: -10px !important;
+          bottom: 50% !important;
+          transform: rotate(90deg);
+        }
+        .second-lined {
+          left: 2px !important;
+          bottom: 50% !important;
+          transform: rotate(0) !important;
+          width: 20px !important;
+        }
+        .third-lined {
+          left: 10px !important;
+          transform: rotate(90deg) !important;
+          bottom: 50% !important;
+        }
+      }
+    }
+    .nav-items {
+      width: 100%;
+
+      .inner-nav-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 1rem;
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+    }
+
+    .logo-centered {
+      width: auto;
+      display: flex;
+      justify-content: flex-start;
+
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+        width: 10rem;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+//   NEW NAVS
+.nav-items-responsive {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  min-width: 15rem;
+  max-width: 25rem;
+  height: 100%;
+  background-color: $w-bg;
+  z-index: $z-topest;
+  @extend .transitions;
+}
+@media screen and (max-width: 720px) {
+  header.header {
+    nav.nav {
+      .hamburger {
+        display: block;
+      }
+      .nav-items {
+        display: none;
+      }
+      .logo-centered {
+        width: 100%;
+        justify-content: center;
+
+        .logo {
+          width: 9rem;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  //   NEW NAVS
+  .nav-items-responsive {
+    display: flex;
+
+    .inner-nav-items {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.5rem;
+      width: 100%;
+      margin-top: 8rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-bottom: 1px solid $w-border;
+      div {
+        display: flex;
+        span {
+          margin-left: 10%;
+          position: relative;
+          padding: 1rem;
+        }
+      }
+
+      i {
+        display: block;
+      }
+    }
+  }
+}
+
+// DARKE MODE
+body.dark-mode {
+  @extend .transitions;
+  header.header {
+    background-color: $d-bg;
+    @extend .transitions;
+  }
+  .nav-items-responsive {
+    background-color: color.adjust($d-bg, $lightness: -2%);
+    @extend .transitions;
+  }
+
+  // DARK MODE
+  .border-bottom {
+    border-bottom: 1px solid color.adjust($d-border, $lightness: -35%);
+  }
+}
+
+// ---------------- MAIN DESIGN END
