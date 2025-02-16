@@ -130,8 +130,8 @@
                             </p>
                             <p class="search-place" :class="{ 'active': isSearchToggle }">স্থান খুজুন</p>
                         </div>
-                        <!-- INPUT SECTION -->
-                        <div class="search-section" :class="{ 'hidei': isSearchToggle }">
+                        <!-- DOCTOR INPUT SECTION -->
+                        <section class="search-section" :class="{ 'hidei': isSearchToggle }">
                             <input v-model="doctorSearchInput" class="main-inputbox" type="text" name="search-input"
                                 id="search-input" placeholder="ডাক্তারের নাম অথবা পদবি লিখে সার্চ করুন...">
 
@@ -141,6 +141,7 @@
                             <!-- DOCTOR SEARCH RESULT -->
                             <div class="doctor-search-result all-border" :class="{ 'hidei': !isHidden }">
                                 <div class="cross-btn" @click="doctorSearchClicked"><i class="m-m-cross"></i></div>
+                                <!-- SEARCH BY DOCTOR -->
                                 <section class="inner-doctor-result">
                                     <div class="search-filter-section theme-bg all-border">
 
@@ -210,8 +211,120 @@
                                     </div>
                                 </section>
                             </div>
+                        </section>
 
-                        </div>
+
+                        <!-- DOCTOR INPUT SECTION -->
+                        <section class="search-section" :class="{ 'hidei': !isSearchToggle }">
+                            <!-- বিভাগ -->
+                            <div class="option">
+                                <select>
+                                    <option value="choice" selected>-- বিভাগ --</option>
+                                    <option value="সিলেট">সিলেট</option>
+                                    <option value="ঢাকা">ঢাকা</option>
+                                    <option value="বরিশাল">বরিশাল</option>
+                                    <option value="সিলেট">সিলেট</option>
+                                </select>
+                            </div>
+                            <!-- জেলা -->
+                            <div class="option">
+                                <select>
+                                    <option value="choice" selected>-- জেলা --</option>
+                                    <option value="সিলেট">সিলেট</option>
+                                    <option value="ঢাকা">ঢাকা</option>
+                                    <option value="বরিশাল">বরিশাল</option>
+                                    <option value="সিলেট">সিলেট</option>
+                                </select>
+                            </div>
+                            <!-- উপজেলা -->
+                            <div class="option">
+                                <select>
+                                    <option value="choice" selected>-- উপজেলা --</option>
+                                    <option value="সিলেট">সিলেট</option>
+                                    <option value="ঢাকা">ঢাকা</option>
+                                    <option value="বরিশাল">বরিশাল</option>
+                                    <option value="সিলেট">সিলেট</option>
+                                </select>
+                            </div>
+
+                            <button @click="doctorSearchClicked" type="submit"
+                                class="btn btn-primary-new">খুজুন</button>
+
+                            <!-- DOCTOR SEARCH RESULT -->
+                            <div class="doctor-search-result all-border" :class="{ 'hidei': !isHidden }">
+                                <div class="cross-btn" @click="doctorSearchClicked"><i class="m-m-cross"></i></div>
+                                <!-- SEARCH BY DOCTOR -->
+                                <section class="inner-doctor-result">
+                                    <div class="search-filter-section theme-bg all-border">
+
+                                        <!-- TEXT FILTER -->
+                                        <div class="search-filter">
+                                            <input type="text" class="search-filter-inputbox" name="filter-search"
+                                                id="filter-search" placeholder="খুজুন...">
+                                            <button @click="searchSearched" type="submit"
+                                                class="btn btn-primary search-filter-submit"><i
+                                                    class="m-search6"></i></button>
+                                        </div>
+
+                                        <!-- FILTER SPECIALITIES -->
+                                        <div class="specialities">
+                                            <button @click="speciality" class="btn btn-primary f-centered"
+                                                type="button"><i class="m-filter1"></i> বিশেষজ্ঞ</button>
+                                            <ul class="specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !isSpeciality }">
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
+                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
+                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- FILTER WORK -->
+                                        <div class="specialities">
+                                            <button @click="work" class="btn btn-primary f-centered" type="button"><i
+                                                    class="m-filter1"></i> কর্মক্ষেত্র</button>
+                                            <ul class="specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !isWork }">
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
+                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
+                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- FILTER WORKING AREA -->
+                                        <div class="specialities">
+                                            <button @click="workingArea" class="btn btn-primary f-centered"
+                                                type="button"><i class="m-filter1"></i> কর্মস্থল</button>
+                                            <ul class="specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !isWorkingArea }">
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
+                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
+                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-2" name="specialities-1">
+                                                    <label for="checkbox-2">অশ্ব ও পাইলস</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+
                     </div>
                 </div>
             </section>
@@ -279,13 +392,16 @@ const workingArea = () => {
     isWorkingArea.value = !isWorkingArea.value;
 }
 
-const doctorSearchInput = ref(null);
+const doctorSearchInput = ref('');
 const isHidden = ref(false);
-
 
 const doctorSearchClicked = () => {
     if (doctorSearchInput.value) {
         isHidden.value = !isHidden.value;
+
+        if (isHidden.value === false) {
+            doctorSearchInput.value = '';
+        }
     } else {
         showToast('error', 'অনুগ্রহ করে কিছু লিখুন...', 'bottom-right');
     }

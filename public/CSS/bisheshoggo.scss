@@ -685,7 +685,7 @@ header.header {
             z-index: $z-topest;
 
             &::after {
-              content: '';
+              content: "";
               position: absolute;
               top: -0.3rem;
               right: -0.5rem;
