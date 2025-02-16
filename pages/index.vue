@@ -90,15 +90,51 @@
         <main class="main">
             <!-- TOP BANNER -->
             <section class="main-banner">
-                <div class="inner-main-banner res-container m-auto">
-                    <aside class="props banner-plus">
+                <div class="inner-main-banner border-bottom">
+                    <aside class="props banner-circle">
                         <img src="/images/w-banner-circle.svg" alt="">
                     </aside>
-                    <aside class="props model">
+                    <aside class="props model-1">
                         <img src="/images/Layer 3.png" alt="">
                     </aside>
+                    <aside class="props model-2">
+                        <img src="/images/Layer 5.png" alt="">
+                    </aside>
+                    <aside class="props plus-1">
+                        <img src="/images/w-plus-1.svg" alt="">
+                    </aside>
+
+                    <aside class="props plus-2">
+                        <img src="/images/w-plus-2.svg" alt="">
+                    </aside>
+
+                    <aside class="props plus-3">
+                        <img src="/images/w-plus-3.svg" alt="">
+                    </aside>
+
+                    <div class="banner-text">
+                        <h1>বিশেষজ্ঞ</h1>
+                        <h2>আপনার সমস্যার জন্য একজন বিশেষজ্ঞ খুজুন</h2>
+                        <h3>" আপনি সুস্থ বলেই পৃথিবীটা সুন্দর "</h3>
+                    </div>
                 </div>
             </section>
+
+            <!-- SEARCH BAR -->
+            <section class="search-main">
+                <div class="inner-search-main">
+                    <div class="relative-container">
+                        <!-- TOGGLE SEARCH -->
+                        <div class="toggle-search all-border" @click="searchToggle">
+                            <p class="search-doctor" :class="{ 'active': !isSearchToggle }">ডাক্তার খুজুন
+                            </p>
+                            <p class="search-place" :class="{ 'active': isSearchToggle }">স্থান খুজুন</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <br><br>
             <img class="w-100" src="/public/UI/index.jpg" alt="">
         </main>
     </section>
@@ -128,14 +164,20 @@ const toggleNavbar = () => {
 const isDarkBgClicked = ref(false);
 const darkBGClick = () => {
     isToggledNav.value = false;
-    isDarkBgClicked.value = false; 
+    isDarkBgClicked.value = false;
     isLinkClicked.value = false;
 }
 const isLinkClicked = ref(false);
 const LinkClicked = () => {
     isToggledNav.value = false;
-    isDarkBgClicked.value = false; 
+    isDarkBgClicked.value = false;
     isLinkClicked.value = false;
+}
+
+// SEARCH BOX
+const isSearchToggle = ref(false);
+const searchToggle = () => {
+    isSearchToggle.value = !isSearchToggle.value;
 }
 
 
