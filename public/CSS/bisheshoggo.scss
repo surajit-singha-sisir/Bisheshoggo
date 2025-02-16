@@ -42,7 +42,7 @@ $d-text2: #68a9e0;
 
 $d-div: #ececec;
 $d-border: #a5a5a5;
-$w-lead: #19182a;
+$d-lead: #19182a;
 
 // SEARCH
 $d-search-div: #1c1b2d;
@@ -337,6 +337,51 @@ header.header {
   z-index: $z-topest;
   @extend .transitions;
 }
+
+// BANNER
+.main-banner {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: $w-lead;
+  height: 60vh;
+
+  .inner-main-banner {
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    .props {
+      display: block;
+      position: absolute;
+
+      img {
+        width: inherit;
+        height: inherit;
+      }
+    }
+
+    .banner-plus {
+      display: block;
+      width: inherit;
+      height: inherit;
+      left: 0;
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+    .model {
+      width: auto;
+      top: 20%;
+      left: 5%;
+      width: auto;
+      height: 90%;
+    }
+  }
+}
+
 @media screen and (max-width: 720px) {
   header.header {
     nav.nav {
@@ -390,7 +435,7 @@ header.header {
   }
 }
 
-// DARKE MODE
+// DARK MODE
 body.dark-mode {
   @extend .transitions;
   header.header {

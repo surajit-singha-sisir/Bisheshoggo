@@ -39,7 +39,6 @@
                             :class="{ 'third-lined': isToggledNav || isDarkBgClicked, 'bg-Whitei': isDarkMode }"></div>
                     </div>
                 </div>
-
                 <!-- LOGO -->
                 <div class="logo-centered">
                     <a href="/" class="logo">
@@ -88,10 +87,18 @@
                 </div>
             </div>
         </div>
-        <main class="res-container m-auto main">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem dignissimos, velit possimus
-            repudiandae quibusdam ipsa maxime labore numquam corporis provident aliquam laboriosam a iste dolores eius
-            suscipit error temporibus rem.
+        <main class="main">
+            <!-- TOP BANNER -->
+            <section class="main-banner">
+                <div class="inner-main-banner res-container m-auto">
+                    <aside class="props banner-plus">
+                        <img src="/images/w-banner-circle.svg" alt="">
+                    </aside>
+                    <aside class="props model">
+                        <img src="/images/Layer 3.png" alt="">
+                    </aside>
+                </div>
+            </section>
             <img class="w-100" src="/public/UI/index.jpg" alt="">
         </main>
     </section>
