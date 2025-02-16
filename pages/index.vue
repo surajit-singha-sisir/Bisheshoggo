@@ -130,6 +130,66 @@
                             </p>
                             <p class="search-place" :class="{ 'active': isSearchToggle }">স্থান খুজুন</p>
                         </div>
+                        <!-- INPUT SECTION -->
+                        <div class="search-section" :class="{ 'hidei': isSearchToggle }">
+                            <input v-model="doctorSearch" class="main-inputbox" type="text" name="search-input"
+                                id="search-input" placeholder="ডাক্তারের নাম অথবা পদবি লিখে সার্চ করুন...">
+
+                            <button @click="doctorSearchClicked" type="submit"
+                                class="btn btn-primary-new">খুজুন</button>
+
+                            <!-- DOCTOR SEARCH RESULT -->
+                            <div class="doctor-search-result all-border">
+                                <section class="inner-doctor-result">
+                                    <div class="search-filter-section theme-bg all-border">
+                                        <!-- TEXT FILTER -->
+                                        <div class="search-filter">
+                                            <input type="text" class="search-filter-inputbox"
+                                                name="filter-search" id="filter-search" placeholder="খুজুন...">
+                                            <button @click="searchSearched" type="submit" class="btn btn-primary search-filter-submit"><i
+                                                    class="m-search6"></i></button>
+                                        </div>
+
+                                        <!-- FILTER SPECIALITIES -->
+                                        <div class="specialities">
+                                            <button @click="speciality" class="btn btn-primary f-centered"
+                                                type="button"><i class="m-filter1"></i> Specialities</button>
+                                            <ul class="specialities-list mastors-scrollbar theme-bg">
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
+                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
+                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-2" name="specialities-1">
+                                                    <label for="checkbox-2">অশ্ব ও পাইলস</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-3" name="specialities-1">
+                                                    <label for="checkbox-3">অশ্ব ও পাইলস</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-4" name="specialities-1">
+                                                    <label for="checkbox-4">অশ্ব ও পাইলস</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-5" name="specialities-1">
+                                                    <label for="checkbox-5">অশ্ব ও পাইলস</label>
+                                                </li>
+                                                <li class="checkbox">
+                                                    <input type="checkbox" id="checkbox-6" name="specialities-1">
+                                                    <label for="checkbox-6">অশ্ব ও পাইলস</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </section>
@@ -180,6 +240,8 @@ const searchToggle = () => {
     isSearchToggle.value = !isSearchToggle.value;
 }
 
+
+const doctorSearch = ref(null);
 
 onMounted(() => {
     if (typeof window !== 'undefined' && localStorage.getItem('dark-mode') === 'true') {

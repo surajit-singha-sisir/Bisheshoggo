@@ -40,7 +40,7 @@ $d-text: #fff;
 $d-subtext: #e7e7e7;
 $d-text2: #68a9e0;
 
-$d-div: #ececec;
+$d-div: #19182a79;
 $d-border: #3d444d;
 $d-lead: #222136;
 
@@ -96,6 +96,37 @@ a:hover {
   text-decoration: none;
   @extend .transitions;
 }
+// PLACEHOLDER FONT SET
+input,
+input::placeholder,
+textarea::placeholder {
+  font-size: 1rem !important;
+  font-family: "Poppins", "Baloo Da 2", sans-serif;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  font-size: 1rem !important;
+  font-family: "Poppins", "Baloo Da 2", sans-serif;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  font-size: 1rem !important;
+  font-family: "Poppins", "Baloo Da 2", sans-serif;
+}
+
+//BUTTON FONT
+button {
+  font-family: "Poppins", "Baloo Da 2", sans-serif;
+}
+.btn-primary-new {
+  background-color: $primary-color;
+  color: $w-bg;
+  border-radius: 2rem;
+  min-width: 8rem;
+  max-width: 15rem;
+}
 
 .full-width {
   width: $full-width;
@@ -116,7 +147,7 @@ a:hover {
 }
 
 .all-border {
-  border-bottom: 1px solid $w-border;
+  border: 1px solid rgba($w-border, 0.4);
 }
 .bg-Whitei {
   background-color: $w-bg !important;
@@ -136,6 +167,67 @@ a:hover {
 .navToggleAnimStart {
   left: 0 !important;
   @extend .transitions;
+}
+
+.theme-primary {
+  background-color: $primary-color;
+}
+.theme-secondary {
+  background-color: $secondary-color;
+}
+.theme-icon {
+  background-color: $icon;
+}
+.theme-bg {
+  background-color: $w-bg;
+}
+.theme-footer-bg {
+  background-color: $w-footer-bg;
+}
+.theme-text {
+  background-color: $w-text;
+}
+.theme-subtext {
+  background-color: $w-subtext;
+}
+.theme-text2 {
+  background-color: $w-text2;
+}
+.theme-lead {
+  background-color: $w-lead;
+}
+.theme-div {
+  background-color: $w-div;
+}
+
+li {
+  list-style-type: none;
+}
+.mastors-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: $w-div transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    &:hover {
+      background: #555;
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }
 
 // ----------- UNIVERSAL CLASSES END
@@ -199,9 +291,6 @@ a:hover {
   }
 }
 // DARK MODE
-body.dark-mode .join-as-a-doctor {
-  background-color: color.adjust($d-bg, $lightness: -5%);
-}
 
 // NAV BAR
 header.header {
@@ -508,6 +597,7 @@ header.header {
       gap: 1rem;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       padding: 1rem;
 
       .toggle-search {
@@ -520,7 +610,7 @@ header.header {
         border-radius: 1.5rem;
         background-color: rgba($w-border, 0.5);
         @extend .transitions;
-        
+
         .search-doctor {
           display: flex;
           align-items: center;
@@ -554,6 +644,98 @@ header.header {
           align-items: center;
           justify-content: center;
           @extend .transitions;
+        }
+      }
+
+      // SEARCH
+      .search-section {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+
+        .main-inputbox {
+          display: block;
+          width: 60%;
+          background-color: rgba($w-bg, 0.4);
+        }
+
+        // SEARCH RESULT DOCTOR
+        .doctor-search-result {
+          position: absolute;
+          top: 3rem;
+          left: 0;
+          display: flex;
+          padding: 1rem;
+          width: 100%;
+          border-radius: 0.5rem;
+          height: 25rem;
+          background-color: rgba($w-bg, 0.8);
+
+          .inner-doctor-result {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+
+            .search-filter-section {
+              display: flex;
+              width: 100%;
+              height: max-content;
+              padding: 1rem;
+              gap: 1rem;
+              background-color: rgba($w-border, 0.3);
+
+              .search-filter {
+                position: relative;
+                flex: 1;
+                display: flex;
+                height: 2.5rem;
+
+                .search-filter-inputbox {
+                  position: relative;
+                  background-color: rgba($w-bg, 0.5);
+                  @extend .all-border;
+                }
+                .search-filter-submit {
+                  position: absolute;
+                  height: inherit;
+                  right: 0;
+                }
+              }
+              .specialities {
+                position: relative;
+                display: flex;
+                width: auto;
+                height: auto;
+                flex-direction: column;
+
+                .specialities-list {
+                  position: absolute;
+                  top: 110%;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: 150%;
+                  height: 15rem;
+                  overflow-y: scroll;
+                  padding: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
+                  flex-direction: column;
+                  border: 1px solid $w-border;
+
+                  li:not(li:last-child) {
+                    padding-bottom: 0.5rem;
+                    border-bottom: 1px solid $w-border;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -617,6 +799,9 @@ header.header {
 body.dark-mode {
   @extend .transitions;
 
+  .join-as-a-doctor {
+    background-color: color.adjust($d-bg, $lightness: -5%);
+  }
   // DARK MODE ANCHOR
   a {
     color: $d-text;
@@ -643,7 +828,7 @@ body.dark-mode {
     border-bottom: 1px solid $d-border;
   }
   .all-border {
-    border-bottom: 1px solid $d-border;
+    border: 1px solid rgba($d-border, 0.5);
   }
   .main-banner {
     background-color: $d-lead;
@@ -656,11 +841,75 @@ body.dark-mode {
   span {
     color: $d-text;
   }
+  .mastors-scrollbar {
+    scrollbar-color: rgba($w-div, 0.2) transparent !important;
+  }
   .search-main {
     .inner-search-main {
       background-color: $d-bg;
       border: 1px solid color.adjust($d-border, $lightness: -5%);
     }
+    .relative-container {
+      .search-section {
+        .main-inputbox {
+          border: 1px solid rgba($d-border, 0.6);
+          background-color: rgba($d-border, 0.4);
+        }
+        .doctor-search-result {
+          background-color: rgba($d-bg, 0.9);
+
+          .inner-doctor-result {
+            .search-filter-section {
+              .search-filter {
+                .search-filter-inputbox {
+                  background-color: rgba($w-bg, 0.1);
+                  @extend .all-border;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // PLACEHOLDER FONT SET
+  input,
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba($d-text, 0.6);
+  }
+
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: rgba($d-text, 0.6);
+  }
+
+  input::-ms-input-placeholder,
+  textarea::-ms-input-placeholder {
+    color: rgba($d-text, 0.6);
+  }
+
+  .theme-bg {
+    background-color: $d-bg !important;
+  }
+  .theme-footer-bg {
+    background-color: $d-footer-bg !important;
+  }
+  .theme-text {
+    background-color: $d-text !important;
+  }
+  .theme-subtext {
+    background-color: $d-subtext !important;
+  }
+  .theme-text2 {
+    background-color: $d-text2 !important;
+  }
+  .theme-lead {
+    background-color: $d-lead !important;
+  }
+  .theme-div {
+    background-color: $d-div !important;
   }
 }
 
