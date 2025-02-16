@@ -1,0 +1,109 @@
+.toast-container {
+  position: fixed;
+  z-index: 1000;
+}
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+.top-right {
+  top: 20px;
+  right: 20px;
+}
+.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+.toast {
+  min-width: 250px;
+  padding: 15px;
+  margin-bottom: 10px;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.success {
+  background: #4caf50;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.error {
+  background: #f44336;
+  border-left: 5px solid #b71c1c;
+}
+.welcome {
+  background: linear-gradient(45deg, #2196f3, #1e88e5);
+  border-radius: 10px;
+}
+.reminder {
+  background: #ff9800;
+  font-style: italic;
+}
+.achievement {
+  background: #9c27b0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.info {
+  background: #00acc1;
+  border-top: 3px solid #00838f;
+}
+.warning {
+  background: #ffc107;
+  border-bottom: 3px solid #ff6f00;
+}
+.neutral {
+  background: #607d8b;
+  color: #e0e0e0;
+}
+.celebration {
+  background: #ff4081;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+.progress {
+  background: #673ab7;
+  border-left: 5px solid #4527a0;
+}
+.notification {
+  background: #009688;
+  border-radius: 20px;
+  padding: 20px;
+}
+.alert {
+  background: #e91e63;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.promotion {
+  background: #ff5722;
+  border-top: 3px solid #d84315;
+}
+.close-btn {
+  margin-left: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -676,6 +676,27 @@ header.header {
           height: 25rem;
           background-color: rgba($w-bg, 0.8);
 
+          .cross-btn {
+            position: absolute;
+            right: 0.55rem;
+            top: 0.35rem;
+            color: $w-bg;
+            cursor: pointer;
+            z-index: $z-topest;
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: -0.3rem;
+              right: -0.5rem;
+              width: 2rem;
+              aspect-ratio: 1;
+              border-radius: 50%;
+              background-color: $primary-color;
+              z-index: $z-down;
+            }
+          }
+
           .inner-doctor-result {
             position: relative;
             width: 100%;
@@ -719,7 +740,7 @@ header.header {
                   top: 110%;
                   left: 50%;
                   transform: translateX(-50%);
-                  width: 150%;
+                  width: 12rem;
                   height: 15rem;
                   overflow-y: scroll;
                   padding: 1rem;
