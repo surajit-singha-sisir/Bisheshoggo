@@ -97,7 +97,7 @@ a:hover {
   @extend .transitions;
 }
 // PLACEHOLDER FONT SET
-input,
+select, input,
 input::placeholder,
 textarea::placeholder {
   font-size: 1rem !important;
@@ -178,7 +178,7 @@ button {
 .theme-icon {
   background-color: $icon;
 }
-.theme-bg {
+.option select, .theme-bg {
   background-color: $w-bg;
 }
 .theme-footer-bg {
@@ -895,7 +895,7 @@ body.dark-mode {
   }
 
   // PLACEHOLDER FONT SET
-  input,
+  select, input,
   input::placeholder,
   textarea::placeholder {
     color: rgba($d-text, 0.6);
@@ -911,7 +911,7 @@ body.dark-mode {
     color: rgba($d-text, 0.6);
   }
 
-  .theme-bg {
+  .option select, .theme-bg {
     background-color: $d-bg !important;
   }
   .theme-footer-bg {

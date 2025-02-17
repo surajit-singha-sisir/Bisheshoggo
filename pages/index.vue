@@ -218,8 +218,8 @@
                         <section class="search-section" :class="{ 'hidei': !isSearchToggle }">
                             <!-- বিভাগ -->
                             <div class="option">
-                                <select>
-                                    <option value="choice" selected>-- বিভাগ --</option>
+                                <select name="bivag" id="bivag" v-model="selectedBivag">
+                                    <option value="choice" disabled>-- বিভাগ --</option>
                                     <option value="সিলেট">সিলেট</option>
                                     <option value="ঢাকা">ঢাকা</option>
                                     <option value="বরিশাল">বরিশাল</option>
@@ -228,8 +228,8 @@
                             </div>
                             <!-- জেলা -->
                             <div class="option">
-                                <select>
-                                    <option value="choice" selected>-- জেলা --</option>
+                                <select name="jela" id="jela" v-model="selectedJela">
+                                    <option value="choice" disabled>-- জেলা --</option>
                                     <option value="সিলেট">সিলেট</option>
                                     <option value="ঢাকা">ঢাকা</option>
                                     <option value="বরিশাল">বরিশাল</option>
@@ -238,8 +238,8 @@
                             </div>
                             <!-- উপজেলা -->
                             <div class="option">
-                                <select>
-                                    <option value="choice" selected>-- উপজেলা --</option>
+                                <select name="upojela" id="upojela" v-model="selectedUpojela">
+                                    <option value="choice" disabled>-- উপজেলা --</option>
                                     <option value="সিলেট">সিলেট</option>
                                     <option value="ঢাকা">ঢাকা</option>
                                     <option value="বরিশাল">বরিশাল</option>
@@ -247,11 +247,11 @@
                                 </select>
                             </div>
 
-                            <button @click="doctorSearchClicked" type="submit"
+                            <button @click="locationSearchClicked" type="submit"
                                 class="btn btn-primary-new">খুজুন</button>
 
                             <!-- DOCTOR SEARCH RESULT -->
-                            <div class="doctor-search-result all-border" :class="{ 'hidei': !isHidden }">
+                            <div class="doctor-search-result all-border" :class="{ 'hidei': !islocationSearchClicked }">
                                 <div class="cross-btn" @click="doctorSearchClicked"><i class="m-m-cross"></i></div>
                                 <!-- SEARCH BY DOCTOR -->
                                 <section class="inner-doctor-result">
@@ -323,8 +323,8 @@
                                     </div>
                                 </section>
                             </div>
-                        </section>
 
+                        </section>
                     </div>
                 </div>
             </section>
@@ -337,6 +337,23 @@
 
 <script setup>
 import { showToast } from "/public/JS/showToast.js";
+
+
+
+
+const selectedBivag = ref("choice");
+const selectedJela = ref("choice");
+const selectedUpojela = ref("choice");
+const islocationSearchClicked = ref(false);
+
+// LOCATION SEARCH 
+const locationSearchClicked = () => {
+    if (selectedBivag.value != 'choice' || selectedJela.value != 'choice' || selectedUpojela.value != 'choice') {
+        islocationSearchClicked.value = true;
+    } else {
+        showToast("error", "অনুগ্রহ করে যে কোন একটি সিলেক্ট করুন", "bottom-right")
+    }
+}
 
 
 // DARK THEME TOGGLE
@@ -406,6 +423,7 @@ const doctorSearchClicked = () => {
         showToast('error', 'অনুগ্রহ করে কিছু লিখুন...', 'bottom-right');
     }
 }
+
 
 
 
