@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <main class="main">
+        <main class="main" @click="toggleOff">
             <!-- TOP BANNER -->
             <section class="main-banner">
                 <div class="inner-main-banner border-bottom">
@@ -143,200 +143,480 @@
                                 <div class="cross-btn" @click="doctorSearchClicked"><i class="m-m-cross"></i></div>
                                 <!-- SEARCH BY DOCTOR -->
                                 <section class="inner-doctor-result">
-                                    <div class="search-filter-section theme-bg all-border">
-
+                                    <div class="search-filter-section all-border">
                                         <!-- TEXT FILTER -->
                                         <div class="search-filter">
+                                            <!-- <input type="text" class="search-filter-inputbox" name="filter-search"
+                                                id="filter-search" placeholder="খুজুন..."
+                                                v-model="searchSearchedInput" />
+                                            <button @click="searchSearched" type="submit"
+                                                class="btn btn-primary search-filter-submit">
+                                                <i class="m-search6"></i>
+                                            </button> -->
                                             <input type="text" class="search-filter-inputbox" name="filter-search"
                                                 id="filter-search" placeholder="খুজুন...">
-                                            <button @click="searchSearched" type="submit"
-                                                class="btn btn-primary search-filter-submit"><i
-                                                    class="m-search6"></i></button>
+                                            <button id="search-btn" type="button"
+                                                class="btn btn-primary search-filter-submit">
+                                                <i class="m-search6"></i>
+                                            </button>
                                         </div>
-
                                         <!-- FILTER SPECIALITIES -->
                                         <div class="specialities">
-                                            <button @click="speciality" class="btn btn-primary f-centered"
-                                                type="button"><i class="m-filter1"></i> বিশেষজ্ঞ</button>
-                                            <ul class="specialities-list mastors-scrollbar theme-bg"
-                                                :class="{ 'hidei': !isSpeciality }">
+                                            <button @click="docSpeciality" ref="filterBtn"
+                                                class="btn btn-primary f-centered" type="button"><i
+                                                    class="m-filter1"></i> বিশেষজ্ঞ</button>
+                                            <ul ref="uls"
+                                                class="clickedOutside specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !isdocSpeciality }">
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
-                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                    <input type="checkbox" id="docBisheshoggo-0" name="specialities-1">
+                                                    <label for="docBisheshoggo-0">নাক, কান ও গলা</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
-                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="docBisheshoggo-1" name="specialities-1">
+                                                    <label for="docBisheshoggo-1">অশ্ব ও পাইলস</label>
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <!-- FILTER WORK -->
                                         <div class="specialities">
-                                            <button @click="work" class="btn btn-primary f-centered" type="button"><i
+                                            <button @click="docWork" class="btn btn-primary f-centered" type="button"><i
                                                     class="m-filter1"></i> কর্মক্ষেত্র</button>
-                                            <ul class="specialities-list mastors-scrollbar theme-bg"
-                                                :class="{ 'hidei': !isWork }">
+                                            <ul ref="uls"
+                                                class="clickedOutside specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !isdocWork }">
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
-                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                    <input type="checkbox" id="docKormokhetro-0" name="specialities-1">
+                                                    <label for="docKormokhetro-0">নাক, কান ও গলা</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
-                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="docCheckbox-1" name="specialities-1">
+                                                    <label for="docCheckbox-1">অশ্ব ও পাইলস</label>
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <!-- FILTER WORKING AREA -->
                                         <div class="specialities">
-                                            <button @click="workingArea" class="btn btn-primary f-centered"
+                                            <button @click="docWorkingArea" class="btn btn-primary f-centered"
                                                 type="button"><i class="m-filter1"></i> কর্মস্থল</button>
-                                            <ul class="specialities-list mastors-scrollbar theme-bg"
-                                                :class="{ 'hidei': !isWorkingArea }">
+                                            <ul ref="uls"
+                                                class="clickedOutside specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !isdocWorkingArea }">
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
-                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                    <input type="checkbox" id="docKormosthol-0" name="specialities-1">
+                                                    <label for="docKormosthol-0">নাক, কান ও গলা</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
-                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="docKormosthol-1" name="specialities-1">
+                                                    <label for="docKormosthol-1">অশ্ব ও পাইলস</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-2" name="specialities-1">
-                                                    <label for="checkbox-2">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="docKormosthol-2" name="specialities-1">
+                                                    <label for="docKormosthol-2">অশ্ব ও পাইলস</label>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
+                                    <!-- LIST VIEW -->
+                                    <ul class="search-list mastors-scrollbar all-border" id="searchList"
+                                        ref="searchList">
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/boy-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. মো. আনিসুর রহমান</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/girl-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. জান্নাতুল ফেরদৌস</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/boy-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. মো. আনিসুর রহমান</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/boy-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. মো. আনিসুর রহমান</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </section>
                             </div>
                         </section>
 
 
-                        <!-- DOCTOR INPUT SECTION -->
+                        <!-- LOCATION INPUT SECTION -->
                         <section class="search-section" :class="{ 'hidei': !isSearchToggle }">
-                            <!-- বিভাগ -->
-                            <div class="option">
-                                <select name="bivag" id="bivag" v-model="selectedBivag">
-                                    <option value="choice" disabled>-- বিভাগ --</option>
-                                    <option value="সিলেট">সিলেট</option>
-                                    <option value="ঢাকা">ঢাকা</option>
-                                    <option value="বরিশাল">বরিশাল</option>
-                                    <option value="সিলেট">সিলেট</option>
-                                </select>
-                            </div>
-                            <!-- জেলা -->
-                            <div class="option">
-                                <select name="jela" id="jela" v-model="selectedJela">
-                                    <option value="choice" disabled>-- জেলা --</option>
-                                    <option value="সিলেট">সিলেট</option>
-                                    <option value="ঢাকা">ঢাকা</option>
-                                    <option value="বরিশাল">বরিশাল</option>
-                                    <option value="সিলেট">সিলেট</option>
-                                </select>
-                            </div>
-                            <!-- উপজেলা -->
-                            <div class="option">
-                                <select name="upojela" id="upojela" v-model="selectedUpojela">
-                                    <option value="choice" disabled>-- উপজেলা --</option>
-                                    <option value="সিলেট">সিলেট</option>
-                                    <option value="ঢাকা">ঢাকা</option>
-                                    <option value="বরিশাল">বরিশাল</option>
-                                    <option value="সিলেট">সিলেট</option>
-                                </select>
-                            </div>
+                            <aside class="location-Section">
+                                <!-- বিভাগ -->
+                                <div class="option">
+                                    <select name="bivag" id="bivag" v-model="selectedBivag">
+                                        <option value="choice" disabled>-- বিভাগ --</option>
+                                        <option value="সিলেট">সিলেট</option>
+                                        <option value="ঢাকা">ঢাকা</option>
+                                        <option value="বরিশাল">বরিশাল</option>
+                                        <option value="সিলেট">সিলেট</option>
+                                    </select>
+                                </div>
+                                <!-- জেলা -->
+                                <div class="option">
+                                    <select name="jela" id="jela" v-model="selectedJela">
+                                        <option value="choice" disabled>-- জেলা --</option>
+                                        <option value="সিলেট">সিলেট</option>
+                                        <option value="ঢাকা">ঢাকা</option>
+                                        <option value="বরিশাল">বরিশাল</option>
+                                        <option value="সিলেট">সিলেট</option>
+                                    </select>
+                                </div>
+                                <!-- উপজেলা -->
+                                <div class="option">
+                                    <select name="upojela" id="upojela" v-model="selectedUpojela">
+                                        <option value="choice" disabled>-- উপজেলা --</option>
+                                        <option value="সিলেট">সিলেট</option>
+                                        <option value="ঢাকা">ঢাকা</option>
+                                        <option value="বরিশাল">বরিশাল</option>
+                                        <option value="সিলেট">সিলেট</option>
+                                    </select>
+                                </div>
+                            </aside>
 
                             <button @click="locationSearchClicked" type="submit"
                                 class="btn btn-primary-new">খুজুন</button>
-
                             <!-- DOCTOR SEARCH RESULT -->
                             <div class="doctor-search-result all-border" :class="{ 'hidei': !islocationSearchClicked }">
-                                <div class="cross-btn" @click="doctorSearchClicked"><i class="m-m-cross"></i></div>
+                                <!-- ❌ CROSS -->
+                                <div class="cross-btn" @click="locationSearchClicked"><i class="m-m-cross"></i></div>
+
                                 <!-- SEARCH BY DOCTOR -->
                                 <section class="inner-doctor-result">
-                                    <div class="search-filter-section theme-bg all-border">
+                                    <div class="search-filter-section all-border">
 
                                         <!-- TEXT FILTER -->
                                         <div class="search-filter">
                                             <input type="text" class="search-filter-inputbox" name="filter-search"
-                                                id="filter-search" placeholder="খুজুন...">
+                                                id="locfilter-search" placeholder="খুজুন...">
                                             <button @click="searchSearched" type="submit"
                                                 class="btn btn-primary search-filter-submit"><i
                                                     class="m-search6"></i></button>
                                         </div>
-
                                         <!-- FILTER SPECIALITIES -->
                                         <div class="specialities">
-                                            <button @click="speciality" class="btn btn-primary f-centered"
+                                            <button @click="locSpeciality" class="btn btn-primary f-centered"
                                                 type="button"><i class="m-filter1"></i> বিশেষজ্ঞ</button>
-                                            <ul class="specialities-list mastors-scrollbar theme-bg"
-                                                :class="{ 'hidei': !isSpeciality }">
+
+                                            <ul ref="uls"
+                                                class="clickedOutside specialities-list mastors-scrollbar theme-bg hidei"
+                                                :class="{ 'hidei': !islocSpeciality }">
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
-                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                    <input type="checkbox" id="locBisheshoggo-0" name="specialities-1">
+                                                    <label for="locBisheshoggo-0">নাক, কান ও গলা</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
-                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="locBisheshoggo-1" name="specialities-1">
+                                                    <label for="locBisheshoggo-1">অশ্ব ও পাইলস</label>
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <!-- FILTER WORK -->
                                         <div class="specialities">
-                                            <button @click="work" class="btn btn-primary f-centered" type="button"><i
+                                            <button @click="locWork" class="btn btn-primary f-centered" type="button"><i
                                                     class="m-filter1"></i> কর্মক্ষেত্র</button>
-                                            <ul class="specialities-list mastors-scrollbar theme-bg"
-                                                :class="{ 'hidei': !isWork }">
+                                            <ul ref="uls"
+                                                class="clickedOutside specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !islocWork }">
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
-                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                    <input type="checkbox" id="locKormokhetro-0" name="specialities-1">
+                                                    <label for="locKormokhetro-0">নাক, কান ও গলা</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
-                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="locCheckbox-1" name="specialities-1">
+                                                    <label for="locCheckbox-1">অশ্ব ও পাইলস</label>
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <!-- FILTER WORKING AREA -->
                                         <div class="specialities">
-                                            <button @click="workingArea" class="btn btn-primary f-centered"
+                                            <button @click="locWorkingArea" class="btn btn-primary f-centered"
                                                 type="button"><i class="m-filter1"></i> কর্মস্থল</button>
-                                            <ul class="specialities-list mastors-scrollbar theme-bg"
-                                                :class="{ 'hidei': !isWorkingArea }">
+                                            <ul ref="uls"
+                                                class="clickedOutside specialities-list mastors-scrollbar theme-bg"
+                                                :class="{ 'hidei': !islocWorkingArea }">
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-0" name="specialities-1">
-                                                    <label for="checkbox-0">নাক, কান ও গলা</label>
+                                                    <input type="checkbox" id="locKormosthol-0" name="specialities-1">
+                                                    <label for="locKormosthol-0">নাক, কান ও গলা</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-1" name="specialities-1">
-                                                    <label for="checkbox-1">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="locKormosthol-1" name="specialities-1">
+                                                    <label for="locKormosthol-1">অশ্ব ও পাইলস</label>
                                                 </li>
                                                 <li class="checkbox">
-                                                    <input type="checkbox" id="checkbox-2" name="specialities-1">
-                                                    <label for="checkbox-2">অশ্ব ও পাইলস</label>
+                                                    <input type="checkbox" id="locKormosthol-2" name="specialities-1">
+                                                    <label for="locKormosthol-2">অশ্ব ও পাইলস</label>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
+
+                                    <!-- LIST VIEW -->
+                                    <ul class="search-list mastors-scrollbar all-border">
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/boy-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. মো. আনিসুর রহমান</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/girl-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. জান্নাতুল ফেরদৌস</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/boy-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. মো. আনিসুর রহমান</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- DOCTOR -->
+                                        <li class="doctor-container">
+                                            <a href="#" class="inner-doctor-container all-border">
+                                                <!-- PROFILE -->
+                                                <div class="profile all-border">
+                                                    <img src="/public/images/boy-placeholer.png" alt="">
+                                                </div>
+                                                <!-- DETAILS -->
+                                                <div class="details">
+                                                    <h3>ডা. মো. আনিসুর রহমান</h3>
+                                                    <h4>এমবিবিএস, <strong>ডেম(DEM)</strong></h4>
+                                                    <!-- SPECIALITY -->
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>বিশেষজ্ঞ</p>
+                                                        <p>:</p>
+                                                        <strong>শিশু</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মস্থল</p>
+                                                        <p>&nbsp;&nbsp;:</p>
+                                                        <strong>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</strong>
+                                                    </span>
+                                                    <span class="f-start-center gap-10 f-wrap">
+                                                        <p>কর্মক্ষেত্র</p>
+                                                        <p>:</p>
+                                                        <strong>সিলেট, আখালিয়া, মেজরটিলা</strong>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </section>
                             </div>
-
                         </section>
                     </div>
                 </div>
             </section>
 
             <br><br>
-            <img class="w-100" src="/public/UI/index.jpg" alt="">
+            <!-- <img class="w-100" src="/public/UI/index.jpg" alt=""> -->
         </main>
+
     </section>
 </template>
 
 <script setup>
 import { showToast } from "/public/JS/showToast.js";
+
+
+
+const filterBtn = ref(null);
+
+const isdocSpeciality = ref(false);
+const docSpeciality = () => {
+    isdocSpeciality.value = !isdocSpeciality.value;
+}
+
+
+
+
+const locWorkingArea = (event) => {
+    islocWorkingArea.value = !islocWorkingArea.value;
+}
+
+const uls = ref([]);
+
+
 
 
 
@@ -349,9 +629,31 @@ const islocationSearchClicked = ref(false);
 // LOCATION SEARCH 
 const locationSearchClicked = () => {
     if (selectedBivag.value != 'choice' || selectedJela.value != 'choice' || selectedUpojela.value != 'choice') {
-        islocationSearchClicked.value = true;
+        islocationSearchClicked.value = !islocationSearchClicked.value;
+
+
+        if (islocationSearchClicked.value === false) {
+            doctorSearchInput.value = '';
+            selectedBivag.value = 'choice';
+            selectedJela.value = 'choice';
+            selectedUpojela.value = 'choice';
+        }
     } else {
         showToast("error", "অনুগ্রহ করে যে কোন একটি সিলেক্ট করুন", "bottom-right")
+    }
+}
+const doctorSearchInput = ref('');
+const isHidden = ref(false);
+
+const doctorSearchClicked = () => {
+    if (doctorSearchInput.value) {
+        isHidden.value = !isHidden.value;
+
+        if (isHidden.value === false) {
+            doctorSearchInput.value = '';
+        }
+    } else {
+        showToast('error', 'অনুগ্রহ করে কিছু লিখুন...', 'bottom-right');
     }
 }
 
@@ -396,47 +698,156 @@ const searchToggle = () => {
 }
 
 // FILTERS
-const isSpeciality = ref(false);
-const isWork = ref(false);
-const isWorkingArea = ref(false);
-const speciality = () => {
-    isSpeciality.value = !isSpeciality.value;
-}
-const work = () => {
-    isWork.value = !isWork.value;
-}
-const workingArea = () => {
-    isWorkingArea.value = !isWorkingArea.value;
-}
+const isdocWork = ref(false);
+const isdocWorkingArea = ref(false);
 
-const doctorSearchInput = ref('');
-const isHidden = ref(false);
-
-const doctorSearchClicked = () => {
-    if (doctorSearchInput.value) {
-        isHidden.value = !isHidden.value;
-
-        if (isHidden.value === false) {
-            doctorSearchInput.value = '';
-        }
-    } else {
-        showToast('error', 'অনুগ্রহ করে কিছু লিখুন...', 'bottom-right');
-    }
+const docWork = () => {
+    isdocWork.value = !isdocWork.value;
+}
+const docWorkingArea = () => {
+    isdocWorkingArea.value = !isdocWorkingArea.value;
 }
 
 
 
 
+
+// LOCATION SEARCH
+// FILTERS
+const islocSpeciality = ref(false);
+const islocWork = ref(false);
+const islocWorkingArea = ref(false);
+const locSpeciality = () => {
+    islocSpeciality.value = !islocSpeciality.value;
+}
+const locWork = () => {
+    islocWork.value = !islocWork.value;
+}
 
 onMounted(() => {
     if (typeof window !== 'undefined' && localStorage.getItem('dark-mode') === 'true') {
-        isDarkMode.value = true
-        document.body.classList.add('dark-mode')
+        isDarkMode.value = true;
+        document.body.classList.add('dark-mode');
     }
-})
+
+
+
+
+
+
+
+
+
+
+
+    document.getElementById('filter-search').addEventListener('input', function () {
+        const searchQuery = document.getElementById('filter-search').value.trim();
+        const searchList = document.getElementById('searchList');
+        const doctors = searchList.getElementsByClassName('doctor-container');
+        let matchFound = false;
+
+        // If there's a search query, build a regex to match each character in the query (case-insensitive)
+        const regex = new RegExp(searchQuery.split('').join('.*?'), 'gi');
+
+        Array.from(doctors).forEach(function (doctor) {
+            const allTextElements = doctor.querySelectorAll('h3, h4, p, strong');
+            let doctorMatchFound = false;
+
+            allTextElements.forEach(function (element) {
+                const textContent = element.textContent;
+
+                if (searchQuery !== '' && regex.test(textContent)) {
+                    doctorMatchFound = true;
+                    matchFound = true;
+                    // Highlight the characters that match the search query
+                    element.innerHTML = textContent.replace(
+                        regex,
+                        (match) => `<mark>${match}</mark>`
+                    );
+                }
+            });
+
+            if (doctorMatchFound || searchQuery === '') {
+                doctor.style.display = '';
+            } else {
+                doctor.style.display = 'none';
+            }
+        });
+
+        const noDataMessage = document.getElementById('no-data-message');
+
+        if (!matchFound && searchQuery !== '') {
+            if (!noDataMessage) {
+                searchList.classList.add("loader");
+                setTimeout(() => {
+                    const h2 = document.createElement('h2');
+                    h2.id = 'no-data-message';
+                    h2.textContent = 'কোন ডাটা পাওয়া যায়নি';
+                    h2.style.color = 'red';
+                    h2.style.padding = '2rem';
+                    h2.style.textAlign = 'center';
+                    searchList.appendChild(h2);
+
+                    searchList.classList.remove("loader");
+                }, 1000);
+            }
+        } else if (matchFound || searchQuery === '') {
+            if (noDataMessage) {
+                noDataMessage.remove();
+                searchList.classList.remove("loader");
+            }
+
+            if (searchQuery === '') {
+                Array.from(doctors).forEach(function (doctor) {
+                    const allTextElements = doctor.querySelectorAll('h3, h4, p, strong');
+                    allTextElements.forEach(function (element) {
+                        element.innerHTML = element.textContent;
+                    });
+                });
+            }
+        }
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            document.getElementById('filter-search').value = '';
+            document.getElementById('filter-search').dispatchEvent(new Event('input'));
+        }
+    });
+
+
+
+
+});
+
 </script>
 
 <style lang="scss">
 @use '/public/CSS/bisheshoggo.scss';
 @use '/public/CSS/showToast.css';
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    background: linear-gradient(90deg, #000 50%, #0000 0) right/200% 100%;
+    animation: l21 2s infinite linear;
+}
+
+.loader::before {
+    content: "Loading...";
+    color: #0000;
+    padding: 0 5px;
+    background: inherit;
+    background-image: linear-gradient(90deg, #fff 50%, #000 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes l21 {
+    100% {
+        background-position: left
+    }
+}
 </style>
